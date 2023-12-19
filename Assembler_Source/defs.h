@@ -110,6 +110,8 @@
 #define INPUT_CODE              96
 #define OUTPUT_CODE             97
 #define SOUND_CODE              98
+#define XNOR_CODE               99
+
 
 /* Definicoes dos op codes (binarios em strings) */
 
@@ -143,7 +145,8 @@
 /* Logic Instructions (All should begin with "01"): */
 #define LAND            "010010"
 #define LOR             "010011"
-#define LXOR            "010100"
+#define LXOR            "010100"  
+#define LXNOR           "010101"
 #define LNOT            "010101"
 #define SHIFT           "010000"
 #define CMP             "010110"
@@ -225,6 +228,7 @@
 #define AND_STR                 "AND"
 #define OR_STR                  "OR"
 #define XOR_STR                 "XOR"
+#define XNOR_STR                "XNOR"
 #define NOT_STR                 "NOT"
     
 /* SHIFT */

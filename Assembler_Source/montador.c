@@ -246,6 +246,7 @@ void DetectarLabels(void)
             case AND_CODE :
             case OR_CODE :
             case XOR_CODE :
+            case XNOR_CODE:
             case SOUND_CODE:
                 parser_SkipUntil(',');
                 parser_SkipUntil(',');
@@ -961,12 +962,12 @@ void MontarInstrucoes(void)
                     end_cnt += 1;
                     break;
 
-                /* ==============
-                   Xor Rx, Ry, Rz
-                   ==============
+                /*
+                ==================
+                    Xnor Rx, Ry, Rz
+                ==================
                 */
-
-                case XOR_CODE :
+                case XNOR_CODE:
                     str_tmp1 = parser_GetItem_s();
                     val1 = BuscaRegistrador(str_tmp1);
                     free(str_tmp1);
@@ -981,7 +982,10 @@ void MontarInstrucoes(void)
                     str_tmp1 = ConverteRegistrador(val1);
                     str_tmp2 = ConverteRegistrador(val2);
                     str_tmp3 = ConverteRegistrador(val3);
-                    sprintf(str_msg,"%s%s%s%s0",LXOR,str_tmp1,str_tmp2,str_tmp3);
+                    
+                    // Negando o resultado da operação XOR
+                    sprintf(str_msg,"%s%s%s%s0",LXNOR,str_tmp1,str_tmp2,str_tmp3);
+                    
                     free(str_tmp1);
                     free(str_tmp2);
                     free(str_tmp3);
@@ -1014,9 +1018,36 @@ void MontarInstrucoes(void)
                 /* ==============
    
    
+                /* ==============
+                   Xor Rx, Ry, Rz
+                   ==============
+                */
+
+                case XOR_CODE :
+                    str_tmp1 = parser_GetItem_s();
+                    val1 = BuscaRegistrador(str_tmp1);
+                    free(str_tmp1);
+                    parser_Match(',');
+                    str_tmp2 = parser_GetItem_s();
+                    val2 = BuscaRegistrador(str_tmp2);
+                    free(str_tmp2);
+                    parser_Match(',');
+                    str_tmp3 = parser_GetItem_s();
+                    val3 = BuscaRegistrador(str_tmp3);
+                    free(str_tmp3);
+                    str_tmp1 = ConverteRegistrador(val1);
+                    str_tmp2 = ConverteRegistrador(val2);
+                    str_tmp3 = ConverteRegistrador(val3);
+                    sprintf(str_msg,"%s%s%s%s0",LXOR,str_tmp1,str_tmp2,str_tmp3);
+                    free(str_tmp1);
+                    free(str_tmp2);
+                    free(str_tmp3);
+                    parser_Write_Inst(str_msg,end_cnt);
+                    end_cnt += 1;
+                    break;
    
-   
-   
+    
+                /*
                 Shiftl0 Rx, #n
                    ==============
                 */
@@ -2349,6 +2380,10 @@ int BuscaInstrucao(char * nome)
     else if (strcmp(str_tmp,XOR_STR) == 0)
     {
         return XOR_CODE;
+    }
+    else if (strcmp(str_tmp,XNOR_STR) == 0)
+    {
+        return XNOR_CODE;
     }
     else if (strcmp(str_tmp,NOT_STR) == 0)
     {
