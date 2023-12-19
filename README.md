@@ -1,79 +1,116 @@
-# Disciplina SSC0119 Prática em Organização de Computadores
-- Por Favor, para as aulas e informações da Disciplina SSC0119 Prática em Organização de Computadores, usar a página da Disciplina em: https://gitlab.com/simoesusp/disciplinas/-/tree/master/SSC0119-Pratica-em-Organizacao-de-Computadores
+# Novas Funcionalidades do Processador ICMC
+
+## Autores
+- Leonardo Gueno Rissetto (13676482)
+- Lucas Lima Romero (13676325)
+- Luciano Gonçalves Lopes Filho (13676520)
+- Thiago Kashivagui Gonçalves (13676579)
+  
+## Professor
+- Eduardo do Valle Simões
+
+# Processador da Universidade de São Paulo - São Carlos
+
+Este repositório contém implementações relacionadas ao processador desenvolvido como parte da disciplina "Organização e Arquitetura de Computadores" na Universidade de São Paulo - São Carlos.
+
+## Novas Funcionalidades
+
+### Instrução XNOR
+
+#### Descrição
+
+Para melhorar as capacidades do processador, uma nova instrução, XNOR, foi adicionada. A instrução XNOR realiza uma operação lógica "ou exclusivo negado" (XNOR) entre dois registradores e armazena o resultado em um terceiro registrador.
+
+#### Implementação
+
+A implementação da instrução XNOR foi realizada no arquivo `montador.c`. Aqui está uma visão geral da lógica implementada:
+
+1. **Obtenção dos Registradores:**
+   - São obtidos os nomes dos registradores Rx, Ry e Rz.
+
+2. **Verificação das Vírgulas:**
+   - Garantimos que há uma vírgula após cada registrador.
+
+3. **Conversão para Binário:**
+   - Os valores dos registradores são convertidos em representações binárias.
+
+4. **Lógica Específica da Instrução XNOR:**
+   - Realiza a operação lógica XNOR entre os valores de Ry e Rz e armazena o resultado em Rx.
+
+5. **Construção da Instrução XNOR:**
+   - A instrução XNOR é construída em formato binário.
+
+6. **Escrita no Arquivo de Saída:**
+   - A instrução XNOR é escrita no arquivo de saída do montador.
+
+### Instrução NAND
+
+#### Descrição
+
+A instrução NAND realiza uma operação lógica "não e" (NAND) entre dois registradores e armazena o resultado em um terceiro registrador.
+
+#### Implementação
+
+A implementação da instrução NAND segue uma lógica semelhante à instrução XNOR no arquivo `montador.c`. Aqui estão os detalhes principais:
+
+1. **Obtenção dos Registradores:**
+   - São obtidos os nomes dos registradores Rx, Ry e Rz.
+
+2. **Verificação das Vírgulas:**
+   - Garantimos que há uma vírgula após cada registrador.
+
+3. **Conversão para Binário:**
+   - Os valores dos registradores são convertidos em representações binárias.
+
+4. **Lógica Específica da Instrução NAND:**
+   - Realiza a operação lógica NAND entre os valores de Ry e Rz e armazena o resultado em Rx.
+
+5. **Construção da Instrução NAND:**
+   - A instrução NAND é construída em formato binário.
+
+6. **Escrita no Arquivo de Saída:**
+   - A instrução NAND é escrita no arquivo de saída do montador.
+
+### Instrução NOR
+
+#### Descrição
+
+A instrução NOR realiza uma operação lógica "não ou" (NOR) entre dois registradores e armazena o resultado em um terceiro registrador.
+
+#### Implementação
+
+A implementação da instrução NOR segue uma abordagem semelhante à instrução XNOR. Aqui estão os principais detalhes:
+
+1. **Obtenção dos Registradores:**
+   - São obtidos os nomes dos registradores Rx, Ry e Rz.
+
+2. **Verificação das Vírgulas:**
+   - Garantimos que há uma vírgula após cada registrador.
+
+3. **Conversão para Binário:**
+   - Os valores dos registradores são convertidos em representações binárias.
+
+4. **Lógica Específica da Instrução NOR:**
+   - Realiza a operação lógica NOR entre os valores de Ry e Rz e armazena o resultado em Rx.
+
+5. **Construção da Instrução NOR:**
+   - A instrução NOR é construída em formato binário.
+
+6. **Escrita no Arquivo de Saída:**
+   - A instrução NOR é escrita no arquivo de saída do montador.
+
+### Como Utilizar
+
+Para utilizar a nova instrução XNOR, siga os passos abaixo:
+
+   ```assembly
+   ; Exemplo de XNOR
+   XNOR R1, R2, R3
+    
+   ; Exemplo de NAND
+   NAND R4, R5, R6
+    
+   ; Exemplo de NOR
+   NOR R7, R8, R9
 
 
-# ICMC-Processor
-Development of a complete environment to teach and learn computer architecture, VHDL processor design and Assembly language
-
-This project consists of the development of a complete environment to teach and learn computer architecture, VHDL processor design and Assembly language.
-
-The proposed ICMC-Processor was designed to be simple, efficient, and easy to teach and understand. It was proposed as the main project for Computer Organization classes at the ICMC-University of Sao Paulo, in Sao Carlos, Sao Paulo state, Brazil.
-
-This project consists of five parts:
-
-1-	FPGA processor design (Altera VHDL project for Cyclone II DE2-70 board)
-
-2-	Assembler software (to generate binary code for the ICMC-Processor implemented on FPGA)
-
-3-	Simulator software (to simulate the execution of code on the ICMC-Processor)
-
-4-	Compiler software (to compile a reduced set of  C language commands)
-
-5-	Documentation (Processor architecture and Assembly language description)
-
-
-
-# Configuração da Placa DE0:
-
-1- Configure o Clock para 1MHz: SW[2] = 1; SW[1]=1; SW[0]=0
-
-2- Selecione o clock AUTOMATICO => sw[8] = 0
-
-3- Agora e' so' programar a placa do Quartus
-
-4- Para clock MANUAL => SW[8]=1  e  mudar a SW[9] para dar o clock no circuito
-
-# Configuração da Placa DE115:
-
-1- Configure o Clock para 1MHz: SW[6] = 1   e TODAS as outras para 0 (Para outros Clocks, tentar subir uma por uma (e apenas uma!) das SW[0]=1Hz, SW[1]=10Hz  ate' SW[6]=1MHz)
-
-2- Selecione o clock AUTOMATICO => sw[16] = 1
-
-3- Agora e' so' programar a placa do Quartus
-
-4- Para clock MANUAL => SW[16]=1  e  mudar a SW[17] para dar o clock no circuito
-
-# Para gerar o PROGRAMA:
-
-1- Escreva o programa NORMALMENTE no Sublime (nome.ASM)
-
-2- F7 para montar o arquivo binario (nome.MIF) e Simular (pra ver se Funciona, ANTES de esperar 20min no Quartus!!)
-
-3- Mude o NOME do arquivo nome.MIF para CPURAM.MIF
-
-4- Copie CPURAM.MIF para a pasta do Projeto no Quartus
-
-5- Compile o projeto no Quartus
-
-6- Programe a Placa e REZE!!!!
-
-7- Troque o  input do Monitor para entrada VGA (tu vai sofrer nos menuzinhos da Philipis!!!)
-
-# Simulador Online
-
-Há uma versão online do simulador para facilitar o desenvolvimento de aplicações compatíveis com o processador. Esta é a versão mais estável dentre as disponíveis no repositório e dispensa qualquer etapa adicional de instalação na máquina local. 
-
-- Pode ser acessado através do link: [https://thiagoambiel.github.io/SimuladorICMC/](https://thiagoambiel.github.io/SimuladorICMC/)
-
-# Novo Simulador local usando go
-
-Além do simulador online e o escrito em C++, foi criado um novo simulador cujo objetivo é dar suporte aos sistemas operacionais mais usados com binários pré compilados, além de ter uma interface mais moderna e de simples uso. O [goICMCsim](https://github.com/lucasgpulcinelli/goICMCsim) tem diversas funcionalidades úteis e é facilmente extensível. Para usá-lo, basta baixar o binário deste link:
-- [https://github.com/lucasgpulcinelli/goICMCsim/releases](https://github.com/lucasgpulcinelli/goICMCsim/releases)
-
-Se você gostar do simulador, considere contribuir no repositório!
-
-# Compilador usando o framework do LLVM
-
-No momento, um grande objetivo do projeto é desenvolver um compilador para a arquitetura. Para a sua criação, é importante ter um framework extensível, pois não deve ser necessária a definição da linguagem de alto nível que deverá ser compilada, somente a descrição da arquitetura e como ela funciona. Para isso, é utilizado o framework do LLVM, o qual baseia o compilador clang, rustc, julia, entre outros.
-
-O desenvolvimento do compilador está sendo feito [neste](https://github.com/lucasgpulcinelli/LLVM-ICMC-backend) repositório. Há uma apresentação em português, que tem uma boa documentação de como o compilador funciona num alto nível [aqui](https://docs.google.com/presentation/d/1gBzEu6jkQpzviPLqYvcLvQtvajxIN58WHAHa-J1ruJg/edit?usp=sharing). Note que o compilador não está pronto, e novas contribuições são bem vindas, veja as [issues](https://github.com/lucasgpulcinelli/LLVM-ICMC-backend/issues)!
