@@ -111,7 +111,7 @@
 #define OUTPUT_CODE             97
 #define SOUND_CODE              98
 #define XNOR_CODE               99
-
+#define NAND_CODE               100
 
 /* Definicoes dos op codes (binarios em strings) */
 
@@ -144,6 +144,7 @@
 
 /* Logic Instructions (All should begin with "01"): */
 #define LAND            "010010"
+#define LNAND           "010011"
 #define LOR             "010011"
 #define LXOR            "010100"  
 #define LXNOR           "010101"
@@ -226,6 +227,7 @@
 
 
 #define AND_STR                 "AND"
+#define NAND_STR                "NAND"
 #define OR_STR                  "OR"
 #define XOR_STR                 "XOR"
 #define XNOR_STR                "XNOR"

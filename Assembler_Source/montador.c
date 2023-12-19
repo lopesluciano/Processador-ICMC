@@ -244,6 +244,7 @@ void DetectarLabels(void)
             case DIV_CODE :
 	        case LMOD_CODE :	    
             case AND_CODE :
+            case NAND_CODE:
             case OR_CODE :
             case XOR_CODE :
             case XNOR_CODE:
@@ -906,9 +907,42 @@ void MontarInstrucoes(void)
                     end_cnt += 1;
                     break;
 
-                /* ==============
-	Mod Rx, Ry, Rz
-                   ==============
+                /*
+                ==================
+                    Nand Rx, Ry, Rz
+                ==================
+                */
+
+                case NAND_CODE:
+                    str_tmp1 = parser_GetItem_s();
+                    val1 = BuscaRegistrador(str_tmp1);
+                    free(str_tmp1);
+                    parser_Match(',');
+                    str_tmp2 = parser_GetItem_s();
+                    val2 = BuscaRegistrador(str_tmp2);
+                    free(str_tmp2);
+                    parser_Match(',');
+                    str_tmp3 = parser_GetItem_s();
+                    val3 = BuscaRegistrador(str_tmp3);
+                    free(str_tmp3);
+                    str_tmp1 = ConverteRegistrador(val1);
+                    str_tmp2 = ConverteRegistrador(val2);
+                    str_tmp3 = ConverteRegistrador(val3);
+                    
+                    // Lógica de NAND: Negando o resultado da operação AND
+                    sprintf(str_msg,"%s%s%s%s0",LNAND,str_tmp1,str_tmp2,str_tmp3);
+                    
+                    free(str_tmp1);
+                    free(str_tmp2);
+                    free(str_tmp3);
+                    parser_Write_Inst(str_msg,end_cnt);
+                    end_cnt += 1;
+                    break;
+
+                /* 
+                ==============
+            	    Mod Rx, Ry, Rz
+                ==============
                 */
 
                 case LMOD_CODE :
@@ -2372,6 +2406,10 @@ int BuscaInstrucao(char * nome)
     else if (strcmp(str_tmp,AND_STR) == 0)
     {
         return AND_CODE;
+    }
+    else if (strcmp(str_tmp,NAND_STR) == 0)
+    {
+        return NAND_CODE;
     }
     else if (strcmp(str_tmp,OR_STR) == 0)
     {
