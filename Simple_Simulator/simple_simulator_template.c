@@ -851,7 +851,7 @@ ResultadoUla ULA(unsigned int x, unsigned int y, unsigned int OP, int carry) {
 						result = x & y;
 						break;
 					case LNAND:
-						result = !(x & y);
+						result = !(x & y); // Nega o resultado de AND para obter NAND
 						break;
 					case LXOR:
 						result = x ^ y;
@@ -863,7 +863,7 @@ ResultadoUla ULA(unsigned int x, unsigned int y, unsigned int OP, int carry) {
 						result = x | y;
 						break;
 					case LNOR:
-						result = !(x | y);
+						result = !(x | y); // Nega o resultado de OR para obter NOR
 						break;
 					case LNOT:
 						// ~x -> 000000101 para 111111010

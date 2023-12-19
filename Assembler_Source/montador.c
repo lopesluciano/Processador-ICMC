@@ -1029,36 +1029,6 @@ void MontarInstrucoes(void)
                     end_cnt += 1;
                     break;
 
-                /*
-                ==================
-                    Xnor Rx, Ry, Rz
-                ==================
-                */
-                case XNOR_CODE:
-                    str_tmp1 = parser_GetItem_s();
-                    val1 = BuscaRegistrador(str_tmp1);
-                    free(str_tmp1);
-                    parser_Match(',');
-                    str_tmp2 = parser_GetItem_s();
-                    val2 = BuscaRegistrador(str_tmp2);
-                    free(str_tmp2);
-                    parser_Match(',');
-                    str_tmp3 = parser_GetItem_s();
-                    val3 = BuscaRegistrador(str_tmp3);
-                    free(str_tmp3);
-                    str_tmp1 = ConverteRegistrador(val1);
-                    str_tmp2 = ConverteRegistrador(val2);
-                    str_tmp3 = ConverteRegistrador(val3);
-                    
-                    // Negando o resultado da operação XOR
-                    sprintf(str_msg,"%s%s%s%s0",LXNOR,str_tmp1,str_tmp2,str_tmp3);
-                    
-                    free(str_tmp1);
-                    free(str_tmp2);
-                    free(str_tmp3);
-                    parser_Write_Inst(str_msg,end_cnt);
-                    end_cnt += 1;
-                    break;
 
                 /* ==============
                    Not Rx Ry
@@ -1113,6 +1083,36 @@ void MontarInstrucoes(void)
                     end_cnt += 1;
                     break;
    
+                 /*
+                ==================
+                    Xnor Rx, Ry, Rz
+                ==================
+                */
+                case XNOR_CODE:
+                    str_tmp1 = parser_GetItem_s();
+                    val1 = BuscaRegistrador(str_tmp1);
+                    free(str_tmp1);
+                    parser_Match(',');
+                    str_tmp2 = parser_GetItem_s();
+                    val2 = BuscaRegistrador(str_tmp2);
+                    free(str_tmp2);
+                    parser_Match(',');
+                    str_tmp3 = parser_GetItem_s();
+                    val3 = BuscaRegistrador(str_tmp3);
+                    free(str_tmp3);
+                    str_tmp1 = ConverteRegistrador(val1);
+                    str_tmp2 = ConverteRegistrador(val2);
+                    str_tmp3 = ConverteRegistrador(val3);
+                    
+                    // Negando o resultado da operação XOR
+                    sprintf(str_msg,"%s%s%s%s0",LXNOR,str_tmp1,str_tmp2,str_tmp3);
+                    
+                    free(str_tmp1);
+                    free(str_tmp2);
+                    free(str_tmp3);
+                    parser_Write_Inst(str_msg,end_cnt);
+                    end_cnt += 1;
+                    break;
     
                 /*
                 Shiftl0 Rx, #n
