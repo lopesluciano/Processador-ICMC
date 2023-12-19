@@ -146,13 +146,13 @@
 /* Logic Instructions (All should begin with "01"): */
 #define LAND            "010010"
 #define LNAND           "010011"
-#define LOR             "010011"
-#define LNOR            "010100"
-#define LXOR            "010100"  
-#define LXNOR           "010101"
-#define LNOT            "010101"
-#define SHIFT           "010000"
-#define CMP             "010110"
+#define LOR             "010100"
+#define LNOR            "010101"
+#define LXOR            "010110" 
+#define LXNOR           "010111"  
+#define LNOT            "011000"  
+#define SHIFT           "011001"  
+#define CMP             "011010"  
 
 /* FLOW CONTROL Instructions: */
 #define BRA             "000001"

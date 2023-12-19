@@ -77,8 +77,11 @@ Do todos os comandos...
 // Logic Instructions (All should begin wiht "01"):
 #define LOGIC 1
 #define LAND 18     // "010010"; -- AND Rx Ry Rz  	-- Rz <- Rx AND Ry	Format: < inst(6) | Rx(3) | Ry(3) | Rz(3)| x >
+#define LNAND 118    // "010101"; -- NAND Rx Ry Rz  -- Rz <- NOT (Rx AND Ry) Format: < inst(6) | Rx(3) | Ry(3) | Rz(3)| x >
 #define LOR 19      // "010011"; -- OR Rx Ry Rz   	-- Rz <- Rx OR Ry		Format: < inst(6) | Rx(3) | Ry(3) | Rz(3)| x >
+#define LNOR 119      // "010110"; -- NOR Rx Ry Rz   -- Rz <- NOT (Rx OR Ry)  Format: < inst(6) | Rx(3) | Ry(3) | Rz(3)| x >
 #define LXOR 20     // "010100"; -- XOR Rx Ry Rz  	-- Rz <- Rx XOR Ry	Format: < inst(6) | Rx(3) | Ry(3) | Rz(3)| x >
+#define LXNOR 120    // "010101"; -- XNOR Rx Ry Rz  	-- Rz <- NOT (Rx XOR Ry)	Format: < inst(6) | Rx(3) | Ry(3) | Rz(3)| x >
 #define LNOT 21     // "010101"; -- NOT Rx Ry       	-- Rx <- NOT(Ry)		Format: < inst(6) | Rx(3) | Ry(3) | xxxx >
 #define SHIFT 16    // "010000"; -- SHIFTL0 Rx,n / SHIFTL1 Rx,n / SHIFTR0 Rx,n / SHIFTR1 Rx,n / ROTL Rx,n / ROTR Rx,n
 //           -- Format: < inst(6) | Rx(3) |  b6 b5 b4 | nnnn >
@@ -394,8 +397,11 @@ loop:
 				case DIV:
 				case LMOD:
 				case LAND:
+				case LNAND:
 				case LOR:
+				case LNOR:
 				case LXOR:
+				case LXNOR:
 				case LNOT:
 					// reg[rx] = reg[ry] + reg[rz]; // Soma ou outra operacao
 					
@@ -844,11 +850,20 @@ ResultadoUla ULA(unsigned int x, unsigned int y, unsigned int OP, int carry) {
 					case LAND:
 						result = x & y;
 						break;
+					case LNAND:
+						result = !(x & y);
+						break;
 					case LXOR:
 						result = x ^ y;
 						break;
+					case LXNOR:
+    					result = !(x ^ y); // Nega o resultado de XOR para obter XNOR
+    					break;
 					case LOR:
 						result = x | y;
+						break;
+					case LNOR:
+						result = !(x | y);
 						break;
 					case LNOT:
 						// ~x -> 000000101 para 111111010
