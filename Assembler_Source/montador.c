@@ -246,6 +246,7 @@ void DetectarLabels(void)
             case AND_CODE :
             case NAND_CODE:
             case OR_CODE :
+            case NOR_CODE:
             case XOR_CODE :
             case XNOR_CODE:
             case SOUND_CODE:
@@ -968,7 +969,8 @@ void MontarInstrucoes(void)
                     end_cnt += 1;
                     break;
 
-                /* ==============                   
+                /* 
+                   ==============                   
 	               Or Rx, Ry, Rz
                    ==============
                 */
@@ -989,6 +991,37 @@ void MontarInstrucoes(void)
                     str_tmp2 = ConverteRegistrador(val2);
                     str_tmp3 = ConverteRegistrador(val3);
                     sprintf(str_msg,"%s%s%s%s0",LOR,str_tmp1,str_tmp2,str_tmp3);
+                    free(str_tmp1);
+                    free(str_tmp2);
+                    free(str_tmp3);
+                    parser_Write_Inst(str_msg,end_cnt);
+                    end_cnt += 1;
+                    break;
+
+                /*
+                ==================
+                    Nor Rx, Ry, Rz
+                ==================
+                */
+                case NOR_CODE:
+                    str_tmp1 = parser_GetItem_s();
+                    val1 = BuscaRegistrador(str_tmp1);
+                    free(str_tmp1);
+                    parser_Match(',');
+                    str_tmp2 = parser_GetItem_s();
+                    val2 = BuscaRegistrador(str_tmp2);
+                    free(str_tmp2);
+                    parser_Match(',');
+                    str_tmp3 = parser_GetItem_s();
+                    val3 = BuscaRegistrador(str_tmp3);
+                    free(str_tmp3);
+                    str_tmp1 = ConverteRegistrador(val1);
+                    str_tmp2 = ConverteRegistrador(val2);
+                    str_tmp3 = ConverteRegistrador(val3);
+                    
+                    // Negando o resultado da operação OR
+                    sprintf(str_msg,"%s%s%s%s0",LNOR,str_tmp1,str_tmp2,str_tmp3);
+                    
                     free(str_tmp1);
                     free(str_tmp2);
                     free(str_tmp3);
@@ -2414,6 +2447,10 @@ int BuscaInstrucao(char * nome)
     else if (strcmp(str_tmp,OR_STR) == 0)
     {
         return OR_CODE;
+    }
+    else if (strcmp(str_tmp,NOR_STR) == 0)
+    {
+        return NOR_CODE;
     }
     else if (strcmp(str_tmp,XOR_STR) == 0)
     {
