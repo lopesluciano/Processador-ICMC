@@ -147,7 +147,14 @@ CallSai:
 	pop r2
 	outchar r2, r0		; Printa P na linha 30
 	
-	
+	; Teste do Xnor
+	loadn r1, #5
+	loadn r2, #3
+	xnor r3, r1, r2
+	loadn r4, #'I'
+	add r3, r4, r3
+	loadn r0, #24
+	outchar r3, r0		; Printa R na linha 24
 	
 Fim:	
 	halt
