@@ -1,11 +1,3 @@
-// Para incluir uma nova INSTRUCAO, e' necessario mexer em 3 ugares diferentes:
-// Definir o Codigo da Instrucao: 
-  // #define LOAD_CODE               1
-// Definir os Bits da Instrucao: 
-  // #define LOAD            "110000"
-// Definir a String de como a Instrucao deve aparecer no programa ASM:
-  // #define LOAD_STR                "LOAD"
-
 #ifndef _DEFS_
 #define _DEFS_
 
@@ -109,10 +101,8 @@
 #define NOP_CODE                0
 #define INPUT_CODE              96
 #define OUTPUT_CODE             97
-#define SOUND_CODE              98
 #define XNOR_CODE               110
 #define NAND_CODE               111
-#define NOR_CODE                112
 
 /* Definicoes dos op codes (binarios em strings) */
 
@@ -132,7 +122,6 @@
 /* I/O Instructions: */
 #define OUTCHAR         "110010"
 #define INCHAR          "110101"
-#define SOUND           "110100"
 
 /* Aritmethic Instructions(All should begin with "10"):	*/
 #define ADD             "100000"
@@ -145,14 +134,12 @@
 
 /* Logic Instructions (All should begin with "01"): */
 #define LAND            "010010"
-#define LNAND           "010011"
-#define LOR             "010100"
-#define LNOR            "010101"
-#define LXOR            "010110" 
-#define LXNOR           "010111"  
-#define LNOT            "011000"  
-#define SHIFT           "011001"  
-#define CMP             "011010"  
+#define LXNOR           "010111"
+#define LOR             "010011"
+#define LXOR            "010100"
+#define LNOT            "010101"
+#define SHIFT           "010000"
+#define CMP             "010110"
 
 /* FLOW CONTROL Instructions: */
 #define BRA             "000001"
@@ -209,7 +196,6 @@
 
 #define INPUT_STR               "INPUT"
 #define OUTPUT_STR              "OUTPUT"
-#define SOUND_STR               "SOUND"
 
 /* ADD */
 #define ADD_STR                 "ADD"
@@ -229,12 +215,11 @@
 
 
 #define AND_STR                 "AND"
-#define NAND_STR                "NAND"
 #define OR_STR                  "OR"
-#define NOR_STR                 "NOR"
 #define XOR_STR                 "XOR"
-#define XNOR_STR                "XNOR"
 #define NOT_STR                 "NOT"
+#define XNOR_STR                "XNOR"
+#define NAND_STR                "NAND"
     
 /* SHIFT */
 #define SHIFTL0_STR             "SHIFTL0"
