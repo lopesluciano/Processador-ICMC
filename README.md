@@ -15,7 +15,7 @@
 
 Este repositório contém implementações relacionadas ao processador desenvolvido como parte da disciplina "Organização e Arquitetura de Computadores" na Universidade de São Paulo - São Carlos.
 
-## Novas Funcionalidades
+## Nova Funcionalidade
 
 ### Instrução XNOR
 
@@ -44,6 +44,8 @@ A implementação da instrução XNOR foi realizada no arquivo `montador.c`. Aqu
 
 6. **Escrita no Arquivo de Saída:**
    - A instrução XNOR é escrita no arquivo de saída do montador.
+  
+## Funcionalidades semelhantes que podem ser implementadas com a mesma logica
 
 ### Instrução NAND
 
@@ -107,12 +109,8 @@ Para utilizar a nova instrução XNOR, siga os passos abaixo:
 
    ```assembly
    ; Exemplo de XNOR
-   XNOR R1, R2, R3
+   xnor r1, r2, r3
     
-   ; Exemplo de NAND
-   NAND R4, R5, R6
-    
-   ; Exemplo de NOR
-   NOR R7, R8, R9
+
 
 
