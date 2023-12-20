@@ -1,4 +1,4 @@
-# Novas Funcionalidades do Processador ICMC
+# Nova Funcionalidade do Processador ICMC
 
 **Link do vídeo de apresentação**: [Clique Aqui!](https://drive.google.com/file/d/19HXNUUkNI4NPgB30n9Sc1M5647xieVC4/view?usp=drive_link)
 
